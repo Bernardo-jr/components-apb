@@ -6,6 +6,10 @@
     "dist",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bernardo-jr/components-apb"
+  },
   "version": "0.1.0",
   "dependencies": {
     "react": "^17.0.1",

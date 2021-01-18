@@ -9,7 +9,7 @@ Run the following command:
 ```javascript
 
 import './App.css';
-import FormAPB from './components/form';
+import {FormAPB} from 'componente-apb';
 
 function App() {
   //form => variable con la cual se generan los campos del formulario  

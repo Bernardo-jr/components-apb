@@ -5,6 +5,9 @@ Run the following command:
 `npm install componentes-apb`
 
 ### FormAPB
+
+```javascript
+
 import './App.css';
 import FormAPB from './components/form';
 
@@ -49,3 +52,4 @@ function App() {
 }
 
 export default App;
+```

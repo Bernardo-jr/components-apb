@@ -29,9 +29,18 @@ var form=[
     {
       etiqueta:"input", type:"radio",label:"radio",name:"radiogroup",
       options:[
-        {id:"opt1",label : "opcion 1",value:"1",labelClass:"optDefault",class:"labelDefault"},
-        {id:"opt1",label : "opcion 2",value:"2",labelClass:"optDefault",class:"labelDefault"},
-        {id:"opt1",label : "opcion 3",value:"3",labelClass:"optDefault",class:"labelDefault"},
+        {
+          id:"opt1",label : "opcion 1",value:"1",
+          labelClass:"optDefault",class:"labelDefault"
+        },
+        {
+          id:"opt1",label : "opcion 2",value:"2",
+          labelClass:"optDefault",class:"labelDefault"
+        },
+        {
+          id:"opt1",label : "opcion 3",value:"3",
+          labelClass:"optDefault",class:"labelDefault"
+        },
       ],
       labelClass:"labelDefault",class:"default",
     },

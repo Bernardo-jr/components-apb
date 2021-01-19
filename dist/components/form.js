@@ -2,16 +2,16 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
-import React from 'react';
+import { Component } from 'react';
 import './form.css';
 
-var FormAPB = /*#__PURE__*/function (_React$Component) {
-  _inheritsLoose(FormAPB, _React$Component);
+var FormAPB = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(FormAPB, _Component);
 
   function FormAPB(props) {
     var _this;
 
-    _this = _React$Component.call(this, props) || this;
+    _this = _Component.call(this, props) || this;
     _this.state = {
       form: {}
     };
@@ -36,9 +36,9 @@ var FormAPB = /*#__PURE__*/function (_React$Component) {
     console.log(this.state);
   };
 
-  _proto.handleChange = function handleChange(e, l) {
+  _proto.handleChange = function handleChange(e, l, v) {
     var aux = this.state.form;
-    aux[l] = e.target.value;
+    if (e.target.type === 'radio') aux[l] = v;else if (e.target.type === 'checkbox') aux[l] = e.target.checked;else aux[l] = e.target.value;
     this.setState({
       form: aux
     });
@@ -94,14 +94,27 @@ var FormAPB = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/React.createElement("option", {
         value: "X",
         disabled: true
-      }, "Sexo"), element.options.map(function (opt, key) {
+      }, "Seleccione"), element.options.map(function (opt, key) {
         return /*#__PURE__*/React.createElement("option", {
           key: key,
           value: opt.value
         }, opt.label);
-      })) : /*#__PURE__*/React.createElement("input", {
+      })) : element.type === 'radio' ? element.options.map(function (opt, key) {
+        return /*#__PURE__*/React.createElement("label", {
+          key: key,
+          className: opt.labelClass
+        }, opt.label, /*#__PURE__*/React.createElement("input", {
+          className: opt.class,
+          type: element.type,
+          name: element.name,
+          onChange: function onChange(evt) {
+            return _this4.handleChange(evt, element.label, opt.value);
+          }
+        }));
+      }) : /*#__PURE__*/React.createElement("input", {
         className: element.class,
         type: element.type,
+        name: element.name,
         onChange: function onChange(evt) {
           return _this4.handleChange(evt, element.label);
         }
@@ -128,6 +141,6 @@ var FormAPB = /*#__PURE__*/function (_React$Component) {
   };
 
   return FormAPB;
-}(React.Component);
+}(Component);
 
-export default FormAPB;
+export { FormAPB as default };

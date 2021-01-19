@@ -1,6 +1,6 @@
-import React from 'react';
+import {Component} from 'react';
 import  './form.css';
-class FormAPB extends React.Component{
+export default class FormAPB extends Component{
 
     constructor(props){
         super(props);
@@ -20,10 +20,15 @@ class FormAPB extends React.Component{
         console.log(this.state);
     }
 
-    handleChange(e,l){
-        var aux = this.state.form;
+    handleChange(e,l,v){
+            var aux = this.state.form;
+        if(e.target.type==='radio')
+            aux[l]=v;
+        else if(e.target.type==='checkbox')    
+            aux[l]=e.target.checked;
+        else
             aux[l]=e.target.value;
-            this.setState({form:aux});
+        this.setState({form:aux});
     }
 
     handleSubmit(e,callback){
@@ -62,7 +67,7 @@ class FormAPB extends React.Component{
                         {(element.etiqueta==="select")
                         ?
                         <select className={element.class} defaultValue="X" onChange={(evt) => this.handleChange(evt,element.label)}>
-                            <option value="X" disabled>Sexo</option>
+                            <option value="X" disabled>Seleccione</option>
                             {
                             element.options.map((opt,key)=> {
                              return <option key={key} value={opt.value}>{opt.label}</option>
@@ -70,7 +75,13 @@ class FormAPB extends React.Component{
                             }
                         </select>
                         :
-                        <input className={element.class} type={element.type} onChange={(evt) => this.handleChange(evt,element.label)} />                      
+                        (element.type==='radio')
+                        ?element.options.map((opt,key)=>{
+                            return <label key={key} className={opt.labelClass}>{opt.label}
+                                <input className={opt.class} type={element.type} name={element.name} onChange={(evt) => this.handleChange(evt,element.label,opt.value)} />                      
+                                </label>
+                        })
+                        :<input className={element.class} type={element.type} name={element.name} onChange={(evt) => this.handleChange(evt,element.label)} />                      
                         }
                    </div>
                     })
@@ -88,4 +99,3 @@ class FormAPB extends React.Component{
         );
     }
 }
-export default FormAPB;
